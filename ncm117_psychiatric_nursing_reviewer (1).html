@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>NCM 117 – Psychiatric Nursing Reviewer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+<style>
+:root {
+  --sage:#4a7c2f;--sage-mid:#5e9939;--sage-light:#e8f4db;--sage-border:#9ecb63;
+  --sage-dark:#2e5219;--sage-glow:rgba(94,153,57,0.18);
+  --bg:#f6fbf1;--bg2:#ffffff;--surface:#ffffff;--border:#d4e8c0;--border2:#c3dba7;
+  --text:#1a2e10;--text2:#4a6636;--text3:#7a9668;
+  --shadow:0 2px 16px rgba(60,100,30,0.10);--shadow-lg:0 8px 40px rgba(60,100,30,0.14);
+  --radius:14px;--radius-sm:8px;--radius-pill:100px;
+  --wrong-bg:#fff0f0;--wrong-border:#f0a0a0;--wrong-text:#922;--reveal-bg:#f0f8e8;
+}
+[data-theme="dark"]{
+  --bg:#111a0c;--bg2:#17240f;--surface:#1d2e14;--border:#2e4820;--border2:#3a5c28;
+  --text:#dff0ce;--text2:#a3c882;--text3:#6a9550;
+  --shadow:0 2px 16px rgba(0,0,0,0.4);--shadow-lg:0 8px 40px rgba(0,0,0,0.5);
+  --sage-light:#1f3214;--sage-border:#4d7a30;--sage-glow:rgba(94,153,57,0.12);
+  --wrong-bg:#2a1010;--wrong-border:#7a3030;--wrong-text:#f09090;--reveal-bg:#1a2c10;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background 0.3s,color 0.3s;-webkit-font-smoothing:antialiased;}
+#app{max-width:640px;margin:0 auto;padding:0 0 80px;}
+.header{position:sticky;top:0;z-index:100;background:var(--bg);padding:16px 20px 0;border-bottom:1px solid var(--border);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+.header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.header-title h1{font-family:'Syne',sans-serif;font-size:clamp(17px,4vw,22px);font-weight:800;color:var(--sage-dark);line-height:1.2;letter-spacing:-0.3px;}
+[data-theme="dark"] .header-title h1{color:var(--text2);}
+.header-title p{font-size:12px;color:var(--text3);margin-top:3px;}
+.dark-toggle{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--border);background:var(--surface);color:var(--text2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;flex-shrink:0;font-size:18px;}
+.dark-toggle:hover{background:var(--sage-light);border-color:var(--sage-border);}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:0 0 12px;scrollbar-width:none;-ms-overflow-style:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{flex-shrink:0;padding:9px 16px;border-radius:var(--radius-pill);border:1.5px solid var(--border);background:transparent;cursor:pointer;font-size:13px;font-weight:600;color:var(--text2);font-family:'DM Sans',sans-serif;transition:all 0.18s;display:flex;align-items:center;gap:6px;white-space:nowrap;}
+.tab i{font-size:15px;}
+.tab.active{background:var(--sage-mid);color:#fff;border-color:var(--sage-mid);box-shadow:0 2px 12px var(--sage-glow);}
+.tab:hover:not(.active){background:var(--sage-light);border-color:var(--sage-border);}
+.section{display:none;padding:20px 20px 0;animation:fadeIn 0.25s ease;}
+.section.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+.meta-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;font-size:13px;color:var(--text3);}
+.badge{background:var(--sage-light);color:var(--sage);border:1.5px solid var(--sage-border);border-radius:var(--radius-pill);padding:3px 12px;font-size:13px;font-weight:600;}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:9px 16px;border-radius:var(--radius-pill);border:1.5px solid var(--border2);background:var(--surface);cursor:pointer;font-size:13px;font-weight:600;color:var(--text2);font-family:'DM Sans',sans-serif;transition:all 0.18s;white-space:nowrap;}
+.btn i{font-size:15px;}
+.btn:hover{background:var(--sage-light);border-color:var(--sage-border);}
+.btn.primary{background:var(--sage-mid);color:#fff;border-color:var(--sage-mid);box-shadow:0 2px 10px var(--sage-glow);}
+.btn.primary:hover{background:var(--sage-dark);border-color:var(--sage-dark);}
+.btn:disabled{opacity:0.5;cursor:not-allowed;}
+/* FLASHCARD */
+.fc-progress{height:5px;background:var(--border);border-radius:4px;overflow:hidden;margin-bottom:16px;}
+.fc-bar{height:100%;background:linear-gradient(90deg,var(--sage-mid),var(--sage-border));border-radius:4px;transition:width 0.4s cubic-bezier(.4,0,.2,1);}
+.fc-scene{perspective:1200px;width:100%;height:clamp(200px,45vw,260px);cursor:pointer;margin-bottom:10px;}
+.fc-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform 0.5s cubic-bezier(.4,0,.2,1);}
+.fc-inner.flipped{transform:rotateY(180deg);}
+.fc-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:clamp(14px,4vw,24px);overflow:hidden;}
+.fc-front{background:var(--surface);border:1.5px solid var(--border);box-shadow:var(--shadow);}
+.fc-front .q-num{font-size:11px;font-weight:700;color:var(--sage-mid);letter-spacing:1px;text-transform:uppercase;flex-shrink:0;}
+.fc-front .q-text{font-size:clamp(12px,3.2vw,14px);font-weight:500;color:var(--text);text-align:center;line-height:1.55;overflow-y:auto;max-height:100%;}
+.fc-back{background:linear-gradient(135deg,var(--sage-mid),var(--sage-dark));border:1.5px solid var(--sage);transform:rotateY(180deg);box-shadow:var(--shadow-lg);}
+.fc-back .a-label{font-size:10px;font-weight:700;color:rgba(255,255,255,0.6);letter-spacing:1.5px;text-transform:uppercase;flex-shrink:0;}
+.fc-back .a-text{font-size:clamp(12px,3.2vw,14px);font-weight:600;color:#fff;text-align:center;line-height:1.55;overflow-y:auto;max-height:100%;}
+.fc-hint{text-align:center;font-size:12px;color:var(--text3);margin-bottom:16px;}
+.fc-controls{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+/* QUIZ */
+.qz-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:clamp(14px,4vw,20px);margin-bottom:12px;box-shadow:var(--shadow);}
+.qz-question{font-size:clamp(13px,3.5vw,15px);font-weight:500;color:var(--text);line-height:1.6;margin-bottom:14px;}
+.qz-opts{display:flex;flex-direction:column;gap:7px;}
+.qz-opt{padding:10px 14px;border-radius:var(--radius-sm);border:1.5px solid var(--border);background:var(--bg2);cursor:pointer;font-size:clamp(12px,3.2vw,13.5px);font-family:'DM Sans',sans-serif;color:var(--text);text-align:left;transition:all 0.15s;line-height:1.45;font-weight:400;}
+.qz-opt:hover:not(:disabled){border-color:var(--sage-border);background:var(--sage-light);color:var(--sage-dark);}
+.qz-opt.correct{background:var(--sage-light);border-color:var(--sage-mid);color:var(--sage-dark);font-weight:600;}
+.qz-opt.wrong{background:var(--wrong-bg);border-color:var(--wrong-border);color:var(--wrong-text);}
+.qz-opt:disabled{cursor:not-allowed;}
+.qz-feedback{margin-top:10px;font-size:13px;padding:9px 13px;border-radius:var(--radius-sm);display:none;line-height:1.5;}
+.qz-feedback.show{display:block;}
+.qz-feedback.ok{background:var(--sage-light);color:var(--sage-dark);border:1px solid var(--sage-border);}
+.qz-feedback.bad{background:var(--wrong-bg);color:var(--wrong-text);border:1px solid var(--wrong-border);}
+.qz-nav{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;}
+.qz-result{text-align:center;padding:clamp(24px,6vw,40px) 20px;background:var(--surface);border-radius:var(--radius);border:1.5px solid var(--sage-border);box-shadow:var(--shadow);}
+.qz-result .result-icon{font-size:40px;margin-bottom:10px;}
+.qz-result h2{font-family:'Syne',sans-serif;font-size:clamp(24px,6vw,32px);font-weight:800;color:var(--sage-dark);}
+[data-theme="dark"] .qz-result h2{color:var(--text2);}
+.qz-result p{color:var(--text3);margin:8px 0 20px;font-size:14px;}
+/* IDENTIFICATION */
+.id-card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);padding:clamp(14px,4vw,20px);margin-bottom:12px;box-shadow:var(--shadow);}
+.id-question{font-size:clamp(13px,3.5vw,15px);font-weight:500;color:var(--text);line-height:1.6;margin-bottom:14px;}
+.id-input-wrap{display:flex;gap:8px;align-items:stretch;}
+.id-input{flex:1;padding:10px 13px;border-radius:var(--radius-sm);border:1.5px solid var(--border);font-size:clamp(12px,3.2vw,14px);font-family:'DM Sans',sans-serif;background:var(--bg2);color:var(--text);text-transform:uppercase;transition:border-color 0.15s,background 0.15s;min-width:0;}
+.id-input::placeholder{color:var(--text3);text-transform:none;font-size:12px;}
+.id-input:focus{outline:none;border-color:var(--sage-mid);box-shadow:0 0 0 3px var(--sage-glow);}
+.id-input.correct{border-color:var(--sage-mid);background:var(--sage-light);color:var(--sage-dark);}
+.id-input.wrong{border-color:var(--wrong-border);background:var(--wrong-bg);color:var(--wrong-text);}
+.id-input.reveal{border-color:var(--sage-border);background:var(--reveal-bg);color:var(--sage);}
+.id-feedback{margin-top:10px;font-size:13px;display:none;padding:9px 13px;border-radius:var(--radius-sm);line-height:1.5;}
+.id-feedback.show{display:block;}
+.id-feedback.ok{background:var(--sage-light);color:var(--sage-dark);border:1px solid var(--sage-border);}
+.id-feedback.bad{background:var(--wrong-bg);color:var(--wrong-text);border:1px solid var(--wrong-border);}
+.id-nav{display:flex;justify-content:space-between;align-items:center;gap:8px;}
+@media(max-width:420px){.header{padding:12px 14px 0;}.section{padding:16px 14px 0;}.tabs{padding:0 0 10px;}.tab{padding:8px 13px;font-size:12px;}.btn{padding:8px 13px;font-size:12px;}}
+@media(max-width:360px){.header-title h1{font-size:15px;}.tab{padding:7px 10px;font-size:11.5px;}.btn{padding:7px 10px;font-size:11.5px;}}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="header">
+    <div class="header-top">
+      <div class="header-title">
+        <h1>NCM 117: Psychiatric Nursing</h1>
+        <p>Final Mastery Exam Reviewer &mdash; 95 items</p>
+      </div>
+      <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">
+        <i class="ti ti-moon" id="darkIcon"></i>
+      </button>
+    </div>
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('flashcard')"><i class="ti ti-cards"></i>Flashcards</button>
+      <button class="tab" onclick="switchTab('quiz')"><i class="ti ti-list-check"></i>Multiple Choice</button>
+      <button class="tab" onclick="switchTab('identification')"><i class="ti ti-pencil"></i>Identification</button>
+    </div>
+  </div>
+
+  <div id="flashcard" class="section active">
+    <div class="meta-row"><span id="fc-counter">1 / 95</span><span class="badge" id="fc-pct">1%</span></div>
+    <div class="fc-progress"><div class="fc-bar" id="fc-bar" style="width:1%"></div></div>
+    <div class="fc-scene" onclick="flipCard()">
+      <div class="fc-inner" id="fc-inner">
+        <div class="fc-face fc-front"><div class="q-num" id="fc-num">Q1</div><div class="q-text" id="fc-q"></div></div>
+        <div class="fc-face fc-back"><div class="a-label">Answer</div><div class="a-text" id="fc-a"></div></div>
+      </div>
+    </div>
+    <div class="fc-hint">Tap card to reveal answer</div>
+    <div class="fc-controls">
+      <button class="btn" onclick="fcNav(-1)"><i class="ti ti-arrow-left"></i>Prev</button>
+      <button class="btn" onclick="shuffleFC()"><i class="ti ti-refresh"></i>Shuffle</button>
+      <button class="btn primary" onclick="fcNav(1)">Next<i class="ti ti-arrow-right"></i></button>
+    </div>
+  </div>
+
+  <div id="quiz" class="section">
+    <div id="qz-main">
+      <div class="meta-row"><span id="qz-counter">Question 1 of 20</span><span class="badge" id="qz-score">Score: 0</span></div>
+      <div class="qz-card">
+        <div class="qz-question" id="qz-q"></div>
+        <div class="qz-opts" id="qz-opts"></div>
+        <div class="qz-feedback" id="qz-fb"></div>
+      </div>
+      <div class="qz-nav">
+        <button class="btn" onclick="newQuiz()"><i class="ti ti-refresh"></i>New Quiz</button>
+        <button class="btn primary" id="qz-next" onclick="nextQZ()" style="display:none">Next<i class="ti ti-arrow-right"></i></button>
+      </div>
+    </div>
+    <div id="qz-result" style="display:none" class="qz-result">
+      <div class="result-icon">🎓</div>
+      <h2 id="qz-final-score"></h2>
+      <p id="qz-final-msg"></p>
+      <button class="btn primary" onclick="newQuiz()"><i class="ti ti-refresh"></i>Try Again</button>
+    </div>
+  </div>
+
+  <div id="identification" class="section">
+    <div class="meta-row"><span id="id-counter">1 / 95</span><span class="badge" id="id-score-txt">Score: 0</span></div>
+    <div class="id-card">
+      <div class="id-question" id="id-q"></div>
+      <div class="id-input-wrap">
+        <input class="id-input" id="id-input" type="text" placeholder="Type your answer..." autocomplete="off" onkeydown="if(event.key==='Enter')checkID()">
+        <button class="btn primary" onclick="checkID()">Check</button>
+      </div>
+      <div class="id-feedback" id="id-fb"></div>
+    </div>
+    <div class="id-nav">
+      <button class="btn" onclick="idNav(-1)"><i class="ti ti-arrow-left"></i>Prev</button>
+      <button class="btn" onclick="revealID()"><i class="ti ti-eye"></i>Reveal</button>
+      <button class="btn primary" onclick="idNav(1)">Next<i class="ti ti-arrow-right"></i></button>
+    </div>
+  </div>
+</div>
+
+<script>
+// DARK MODE
+const root=document.documentElement;
+const toggleBtn=document.getElementById('darkToggle');
+const darkIcon=document.getElementById('darkIcon');
+function applyTheme(dark){root.setAttribute('data-theme',dark?'dark':'light');darkIcon.className=dark?'ti ti-sun':'ti ti-moon';localStorage.setItem('ncm117-theme',dark?'dark':'light');}
+toggleBtn.addEventListener('click',()=>{applyTheme(root.getAttribute('data-theme')!=='dark');});
+const saved=localStorage.getItem('ncm117-theme');
+if(saved)applyTheme(saved==='dark');
+else if(window.matchMedia('(prefers-color-scheme: dark)').matches)applyTheme(true);
+
+// DATA — all 95 items verbatim from the PDF
+const data=[
+{q:"In neurotransmitter release from the presynaptic neuron to its receptor cells, neurotransmitters can either be reuptake or metabolized. In the mechanism of action for antidepressant, Phenelzine will primarily act as what to retain important neurotransmitters to aid major depression?",a:"INTERFERE WITH ENZYME METABOLISM"},
+{q:"Patient with major depressive disorder, suicidal and psychotic type, was given Demerol by the nurse as ordered due to inguinal pain. As per the patient's medication sheet, patient was with ongoing Marplan therapy. Minutes after, the patient experienced diaphoresis and flushing. The patient should be evaluated and strictly monitored with what condition?",a:"MAOI TOXICITY"},
+{q:"Patient with depression was given Phenelzine at 11:30 am by the nurse knowing that the patient is still slightly sedated from the last dose. The nurse mistakenly read the order from OD to BID. Patient is at high risk of what condition that may put patient at high alert of fall incidence?",a:"DAYTIME SEDATION"},
+{q:"Patient is under Isocarboxazid therapy and accidentally ate pizza, one slice. Minutes after the patient experience severe vasoconstriction of blood vessels, temperature of 42 degrees celsius, PR: 200 bpm, and hyperstimulation. Based on the situation, the patient is experiencing from what occurrence?",a:"HYPERTENSIVE CRISIS"},
+{q:"Patient with severe depression took Prozac and Marplan together due to active suicidal thoughts. When the nurse enters the patient room, the patient is experiencing hyperreflexia, tachycardia, rigidity, dizziness and diaphoresis. The patient is experiencing what fatal drug interaction adverse effect?",a:"SEROTONIN SYNDROME / SEROTONERGIC SYNDROME"},
+{q:"The pregnant mother accidentally takes Valproic acid due to mishandling. The mother immediately notify the provider because the newborn of the mother is at high risk to develop what condition?",a:"SPINA BIFIDA"},
+{q:"The nurse is ordered to administer Carbamazepine to the patient. The CBC result of the patient shows low RBC, HCT, HGB, WBC DIFFERENTIAL AND PLATELET COUNT. The nurse hold the dose and call the physician because the patient taking Carbamazepine is at high risk to develop what lethal condition?",a:"APLASTIC ANEMIA"},
+{q:"Lithium toxicity can lead to renal failure but acute kidney injury can also be inculcated to the patient. In the phases of acute kidney injury, HYPERKALEMIA is at high risk to be developed. What ECG alterations is seen to a patient suffering from HYPERKALEMIA?",a:"PEAK OR TALL T-WAVE, WIDE QRS, ST-ELEVATION AND ASYSTOLE"},
+{q:"PEMOLINE needs informed consent before to be given to a patient with ADHD. For what reason is Pemoline infrequently used for ADHD?",a:"SEVERE HEPATOTOXICITY / LIVER FAILURE"},
+{q:"Patient with bipolar disorder was given Lamotrigine and 3 days after the patient developed serious rashes in the upper and lower limbs. But it is burn-like, severe type of serious rashes. This is what type of condition?",a:"EPIDERMAL NECROLYSIS"},
+{q:"Patient with depression taking Trazodone. Hours after, the patient suffers from sustained penile erectile that can lead to impotence. What is this condition called?",a:"PRIAPISM"},
+{q:"Patient with schizophrenia is experiencing panic type of anxiety and is given Xanax. Hours later, the patient calmed down and is highly sedated. The nurse understands that side rails up should be inculcated because the nurse is maintaining what for the patient?",a:"SAFETY"},
+{q:"When a patient with severe anxiety is abusing anxiolytics, the patient is at high risk to develop what concerning condition?",a:"PHYSICAL DEPENDENCE"},
+{q:"Patient with ADHD, a 9-year old child has been observed with static growth. The nurse understands that WHAT specific stimulant medication is the main cause? Provide both Generic name and Brand name.",a:"METHYLPHENIDATE (RITALIN)"},
+{q:"The patient is taking Valproic acid. Days after, the patient was rushed to the emergency room due to right sided abdominal pain that radiates at the back, with pyrexia and Cullen sign. The patient is clearly suffering from what fatal condition?",a:"ACUTE PANCREATITIS"},
+{q:"Disulfiram toxicity will last for about what specific range of time before death?",a:"30 MINUTES TO 2 HOURS"},
+{q:"MAOI toxicity can lead to cardiac dysrhythmias and one of which is a saw-tooth appearance seen on the ECG. This is what type of Cardiac Dysrhythmia?",a:"ATRIAL FLUTTER"},
+{q:"Patient with anxiety disorder has diabetes mellitus, insulin requiring and is currently having Lispro therapy. What medication should NOT be given to the patient?",a:"BUPROPION (WELLBUTRIN)"},
+{q:"The patient is taking Maprotiline (Ludiomil) and accidentally forgets the dose of the day. The medication is to be given at 9 am and she was late already for about two hours. The patient can still take the medication up to what specific time?",a:"12 NN / 12 PM"},
+{q:"The patient is to administer lithium to a patient suffering from bipolar disorder. The doctor ordered, LITHIUM IM NOW! The nurse should clarify the doctor because of what reason?",a:"NO PARENTERAL FORM OF LITHIUM"},
+{q:"What is the generic name of Trileptal?",a:"OXCARBAZEPINE"},
+{q:"Anti-cholinergic side effects will decrease or diminish when?",a:"WITHIN 3-4 WEEKS"},
+{q:"The patient cannot sit still and is very restless. The patient is clearly suffering from what condition?",a:"AKATHISIA"},
+{q:"What is the generic name of Trilafon?",a:"PERPHENAZINE"},
+{q:"When the patient is taking Carbamazepine, the nurse should always impose safety because of what side effect that may lead the patient at high risk for fall?",a:"ORTHOSTATIC HYPOTENSION"},
+{q:"What is the brand name of Maprotiline?",a:"LUDIOMIL"},
+{q:"What is the generic name of Stelazine?",a:"TRIFLUOPERAZINE"},
+{q:"What is the brand name of Quetiapine?",a:"SEROQUEL"},
+{q:"Which of the following would the nurse expect to assess in a client who is receiving Fluphenazine (Prolixin) and is admitted to the hospital with neuroleptic malignant syndrome?",a:"HYPERPYREXIA"},
+{q:"What law regulates violence against women and child?",a:"RA 9262"},
+{q:"The patient with ongoing lithium may suffer from polydipsia and polyuria side effects. These signs and symptoms are synonymous to what condition?",a:"DIABETES MELLITUS"},
+{q:"The nurse was ordered by the physician to administer Dalmane to the patient. The nurse understands that this is indicated for what condition experienced by the patient?",a:"CHRONIC INSOMNIA"},
+{q:"The physician ordered Triazolam. The nurse knows that this medication is under what brand name?",a:"HALCION"},
+{q:"A nurse caring for a client taking Clozapine (Clozaril) for the treatment of a schizophrenic disorder reviews the laboratory studies that have been prescribed. Which laboratory study is the priority to monitor for an adverse effect associated with the use of this medication?",a:"WHITE BLOOD CELL COUNT"},
+{q:"A client who has been receiving Haloperidol (Haldol) for a long time exhibits fine worm-like movements of the tongue. Analysis of this finding would lead the nurse to suspect which of the following?",a:"TARDIVE DYSKINESIA"},
+{q:"While monitoring a depressed patient who has just started SSRI antidepressant therapy, the nurse will observe for which problem during the early time frame of this therapy?",a:"SUICIDAL THOUGHTS / IDEATION"},
+{q:"Which of the following drugs should the nurse prepare to administer to a client with a toxic acetaminophen (Tylenol) level?",a:"N-ACETYLCYSTEINE"},
+{q:"Patient was experiencing dry mouth, constipation, dry eyes, nasal congestion, urinary retention, photophobia and nausea after taking antipsychotic medication. The patient is suffering from what?",a:"ANTI-CHOLINERGIC SIDE EFFECTS"},
+{q:"Patient with schizophrenia was given antipsychotic medication and minutes after the patient was clearly experiencing neuroleptic malignant syndrome. What is the earliest sign the nurse should use to promptly call the physician?",a:"FEVER"},
+{q:"What beta-blocker is to be given when the patient is experiencing extrapyramidal syndrome? Provide Generic and Brand name.",a:"PROPRANOLOL (INDERAL)"},
+{q:"What antipsychotic medication is highly contraindicated to a patient with schizophrenia who experienced substernal chest pain and diaphoresis 3 days ago? Provide the Generic name.",a:"ZIPRASIDONE"},
+{q:"What is the brand name of Escitalopram?",a:"LEXAPRO"},
+{q:"What is the generic name of Remeron?",a:"MIRTAZAPINE"},
+{q:"Geodon should not be given to a patient with history of any heart problems, especially those with history of what?",a:"QT PROLONGATION"},
+{q:"A patient on MAOIs ate process cheese slices and asks about intervention. What is the correct response?",a:"PATIENT NEEDS NO INTERVENTION AT THIS TIME — PROCESS CHEESE SLICES ARE LOW IN TYRAMINE"},
+{q:"Agitation, persistent sweating, hyperthermia and tachycardia are classic signs of what condition after taking Celexa?",a:"SEROTONIN SYNDROME / SEROTONERGIC SYNDROME"},
+{q:"Nefazodone is highly toxic to what organ of the body?",a:"LIVER"},
+{q:"Bupropion can lead to seizure when dose exceeded to what?",a:"450 MG/DAY"},
+{q:"When the patient experienced severe lithium toxicity, what is the immediate medical intervention?",a:"HEMODIALYSIS"},
+{q:"What anticonvulsant increases the chance of experiencing renal calculi condition?",a:"TOPIRAMATE"},
+{q:"What family of antidepressant should the nurse question for a patient with depression and diagnosed with closed-angle glaucoma?",a:"TRICYCLIC ANTIDEPRESSANTS"},
+{q:"Medication known as Selegiline is under what drug classification?",a:"MONOAMINE OXIDASE INHIBITORS (MAOI)"},
+{q:"This means idealizing or liking other people and treating them as good and trusted companions but will be quickly devalued when their expectations are not totally met.",a:"SPLITTING"},
+{q:"A related disorder of major depressive disorder that is persistent, manifested by anorexia, insomnia, hopelessness and decreased self-esteem which persists with no more than 1 month or less free of symptoms.",a:"DYSTHYMIC DISORDER"},
+{q:"Enumerate the parts/equipment used in electroconvulsive therapy (ECT).",a:"ELECTRODES, OXYGEN AND BAG VALVE MASK (BVM), EEG, ECG, VITAL SIGNS MONITORING MACHINE"},
+{q:"What type of equipment is used for oxygenation supplementation in conducting ECT?",a:"BAG VALVE MASK (BVM)"},
+{q:"Fever, muscle rigidity and mental status changes are symptoms of a potentially fatal reaction to antidepressants known as:",a:"SEROTONIN SYNDROME / SEROTONERGIC SYNDROME"},
+{q:"To prevent injury in ECT, the doctor will order to administer muscle relaxants and what?",a:"SHORT-ACTING ANESTHETICS"},
+{q:"What is the most common side effect of ECT post-procedure?",a:"SHORT-TERM MEMORY LOSS"},
+{q:"Ventricles of the brain is located within cerebral hemisphere and brain stem lined with ependymal cells which produces CSF via the choroid plexus. Where is the choroid plexus located?",a:"VENTRICLES"},
+{q:"In catatonia, psychomotor disturbances and other related symptoms are typically described as what?",a:"PURPOSELESS"},
+{q:"What term describes copying others' motions?",a:"ECHOPRAXIA"},
+{q:"What term describes parroting someone's speech?",a:"ECHOLALIA"},
+{q:"The main nursing action for this related disorder in schizophrenia (Folie à Deux) is separating the submissive away from the dominant who is extremely experiencing delusions. What is this disorder called?",a:"FOLIE À DEUX — SEPARATE THE SUBMISSIVE FROM THE DOMINANT PATIENT"},
+{q:"A feeling of indifference towards other people is called:",a:"APATHY"},
+{q:"This means poverty of content or speaking very little:",a:"ALOGIA"},
+{q:"A patient with schizophrenia is showing outlandish appearance. This is a display of what behavior?",a:"BIZARRE BEHAVIOR"},
+{q:"'I want to kiss you, kiss you, kiss you and love you and kiss you.' Is an example of what speech pattern?",a:"VERBIGERATION"},
+{q:"An abnormal speech pattern that uses explicitly manipulative, excessive words or phrases to impress someone is called:",a:"STILTED LANGUAGE"},
+{q:"Pervasive adherence to a single topic and verbal repetition of a sentence is called:",a:"PERSEVERATION"},
+{q:"Never answering or returning to the original question or thought is called:",a:"TANGENTIAL THINKING"},
+{q:"This is an unrealistic belief about the patient's bodily functions:",a:"SOMATIC DELUSION"},
+{q:"Belief that organs aren't functioning and body parts are separated is called:",a:"NIHILISTIC DELUSION"},
+{q:"A patient with schizophrenia will be having a CT-Scan with contrast. What oral hypoglycemic should be withheld?",a:"METFORMIN"},
+{q:"What does CAGE stand for in the CAGE screening questionnaire for substance abuse disorder?",a:"CUT DOWN, ANNOYED, GUILTY, EYE-OPENER"},
+{q:"Signs such as tremors, yawning, and piloerection are manifestations of what type of addiction?",a:"OPIOID WITHDRAWAL"},
+{q:"Blood-shot eyes and depersonalization are manifested by what type of addiction?",a:"MARIJUANA INTOXICATION"},
+{q:"What is the best medication administered for alcohol withdrawal? Provide the Generic name only.",a:"CHLORDIAZEPOXIDE"},
+{q:"What is the scientific name of Marijuana?",a:"CANNABIS SATIVA"},
+{q:"What medication is to be given to address CNS depressant overdose?",a:"ACTIVATED CHARCOAL"},
+{q:"An overdose of drug can lead to a toxic condition and:",a:"DEATH"},
+{q:"Barbiturate withdrawal is usually treated with what medication?",a:"PHENOBARBITAL"},
+{q:"What is the priority to watch out for in a patient on opioid overdose?",a:"RESPIRATORY DEPRESSION"},
+{q:"Psilocybin and phencyclidine are examples of what?",a:"HALLUCINOGENS"},
+{q:"This is a treatment given for phencyclidine (PCP) overdose if the patient is alert:",a:"GASTRIC LAVAGE"},
+{q:"This is an unexpected re-experience of the effects of a hallucinogenic drug that can occur for extended periods of time after the drug's original use:",a:"FLASHBACKS"},
+{q:"What general condition is most likely the cause of death in nitrous oxide overdose?",a:"NEUROLOGICAL DEFICITS"},
+{q:"In a patient with ASD, 'Gets stuck on an idea' is an example of what behavior?",a:"OBSESSIVE INTERESTS"},
+{q:"What are the two usual atypical antipsychotic medications used to treat Tic Disorders? Provide Generic and Brand names.",a:"RISPERIDONE (RISPERDAL) AND OLANZAPINE (ZYPREXA)"},
+{q:"This is a repeated passage of feces into inappropriate places such as clothing or the floor by a child who is at least 4 years of age:",a:"ENCOPRESIS"},
+{q:"Methylphenidate is available in a daily transdermal patch, marketed as what?",a:"DAYTRANA"},
+{q:"This is the only nonstimulant drug specifically developed and tested by the U.S. FDA for the treatment of ADHD:",a:"ATOMOXETINE (STRATTERA)"},
+{q:"Lisdexamfetamine is the same as what drug?",a:"DEXTROAMPHETAMINE"},
+{q:"The nurse is assessing a client who is taking an antipsychotic medication. Which of the following symptoms is uniquely indicative of Neuroleptic Malignant Syndrome (NMS) and requires immediate attention?",a:"HYPERPYREXIA"},
+{q:"A 16-year-old client is prescribed 10 mg of Paroxetine (Paxil) at bedtime for major depression. The nurse should instruct the client and parents to monitor the client closely for which adverse effect?",a:"AGITATION"}
+];
+
+// FLASHCARD
+let fcIdx=0,fcOrder=[...Array(data.length).keys()];
+function renderFC(){
+  const i=fcOrder[fcIdx],d=data[i];
+  document.getElementById('fc-num').textContent='Q'+(i+1);
+  document.getElementById('fc-q').textContent=d.q;
+  document.getElementById('fc-a').textContent=d.a;
+  const pos=fcIdx+1,tot=data.length;
+  document.getElementById('fc-counter').textContent=pos+' / '+tot;
+  const pct=Math.round((pos/tot)*100);
+  document.getElementById('fc-bar').style.width=pct+'%';
+  document.getElementById('fc-pct').textContent=pct+'%';
+  document.getElementById('fc-inner').classList.remove('flipped');
+}
+function flipCard(){document.getElementById('fc-inner').classList.toggle('flipped');}
+function fcNav(d){fcIdx=(fcIdx+d+fcOrder.length)%fcOrder.length;renderFC();}
+function shuffleFC(){for(let i=fcOrder.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[fcOrder[i],fcOrder[j]]=[fcOrder[j],fcOrder[i]];}fcIdx=0;renderFC();}
+renderFC();
+
+// QUIZ
+let qzIdx=0,qzItems=[],qzScore=0,qzAnswered=false;
+function switchTab(t){
+  document.querySelectorAll('.tab').forEach((b,i)=>{b.classList.toggle('active',['flashcard','quiz','identification'][i]===t);});
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(t).classList.add('active');
+  if(t==='quiz'&&qzItems.length===0)newQuiz();
+  if(t==='identification')renderID();
+}
+function newQuiz(){
+  const pool=[...data].sort(()=>Math.random()-0.5).slice(0,20);
+  qzItems=pool;qzIdx=0;qzScore=0;qzAnswered=false;
+  document.getElementById('qz-result').style.display='none';
+  document.getElementById('qz-main').style.display='block';
+  document.getElementById('qz-score').textContent='Score: 0';
+  renderQZ();
+}
+function renderQZ(){
+  if(qzIdx>=qzItems.length){showQZResult();return;}
+  const item=qzItems[qzIdx];
+  document.getElementById('qz-counter').textContent='Question '+(qzIdx+1)+' of '+qzItems.length;
+  document.getElementById('qz-q').textContent=item.q;
+  qzAnswered=false;
+  document.getElementById('qz-next').style.display='none';
+  const fb=document.getElementById('qz-fb');fb.className='qz-feedback';fb.textContent='';
+  const correct=item.a;
+  const wrongs=data.filter(d=>d.a!==correct).sort(()=>Math.random()-0.5).slice(0,3).map(d=>d.a);
+  const opts=[correct,...wrongs].sort(()=>Math.random()-0.5);
+  const el=document.getElementById('qz-opts');el.innerHTML='';
+  opts.forEach(o=>{
+    const b=document.createElement('button');b.className='qz-opt';b.textContent=o;
+    b.onclick=()=>answerQZ(b,o,correct);el.appendChild(b);
+  });
+}
+function answerQZ(btn,chosen,correct){
+  if(qzAnswered)return;qzAnswered=true;
+  document.querySelectorAll('.qz-opt').forEach(b=>{b.disabled=true;if(b.textContent===correct)b.classList.add('correct');});
+  const fb=document.getElementById('qz-fb');
+  if(chosen===correct){btn.classList.add('correct');fb.textContent='✓ Correct!';fb.className='qz-feedback ok show';qzScore++;document.getElementById('qz-score').textContent='Score: '+qzScore;}
+  else{btn.classList.add('wrong');fb.textContent='✗ Incorrect. Correct answer: '+correct;fb.className='qz-feedback bad show';}
+  document.getElementById('qz-next').style.display='inline-flex';
+  qzIdx++;
+}
+function nextQZ(){if(qzIdx>=qzItems.length){showQZResult();}else{renderQZ();}}
+function showQZResult(){
+  document.getElementById('qz-main').style.display='none';
+  const r=document.getElementById('qz-result');r.style.display='block';
+  const pct=Math.round((qzScore/qzItems.length)*100);
+  document.getElementById('qz-final-score').textContent=qzScore+' / '+qzItems.length+' ('+pct+'%)';
+  const msg=pct>=80?'Excellent work! Keep it up! 🏆':pct>=60?'Good effort — review the missed items! 📖':'Keep studying — you can do it! 💪';
+  document.getElementById('qz-final-msg').textContent=msg;
+  document.querySelector('.result-icon').textContent=pct>=80?'🏆':pct>=60?'📖':'💪';
+}
+
+// IDENTIFICATION
+let idIdx=0,idScore=0,idAnswered=false;
+function renderID(){
+  const d=data[idIdx];
+  document.getElementById('id-q').textContent=(idIdx+1)+'. '+d.q;
+  document.getElementById('id-counter').textContent=(idIdx+1)+' / '+data.length;
+  document.getElementById('id-score-txt').textContent='Score: '+idScore;
+  const inp=document.getElementById('id-input');inp.value='';inp.className='id-input';inp.disabled=false;
+  const fb=document.getElementById('id-fb');fb.className='id-feedback';fb.textContent='';
+  idAnswered=false;
+  setTimeout(()=>inp.focus(),50);
+}
+function checkID(){
+  if(idAnswered)return;
+  const inp=document.getElementById('id-input');
+  const val=inp.value.trim().toUpperCase();
+  if(!val)return;
+  const ans=data[idIdx].a.toUpperCase();
+  const fb=document.getElementById('id-fb');
+  idAnswered=true;inp.disabled=true;
+  const ok=val===ans||ans.includes(val)||val.includes(ans.split('/')[0].trim())||val.split('/')[0].trim()===ans.split('/')[0].trim();
+  if(ok){inp.classList.add('correct');fb.textContent='✓ Correct!';fb.className='id-feedback ok show';idScore++;document.getElementById('id-score-txt').textContent='Score: '+idScore;}
+  else{inp.classList.add('wrong');fb.innerHTML='✗ Incorrect. Answer: <strong>'+ans+'</strong>';fb.className='id-feedback bad show';}
+}
+function revealID(){
+  if(idAnswered)return;idAnswered=true;
+  const inp=document.getElementById('id-input');
+  inp.value=data[idIdx].a;inp.disabled=true;inp.className='id-input reveal';
+  const fb=document.getElementById('id-fb');
+  fb.textContent='Answer revealed: '+data[idIdx].a;fb.className='id-feedback ok show';
+}
+function idNav(d){idIdx=(idIdx+d+data.length)%data.length;renderID();}
+renderID();
+</script>
+</body>
+</html>
