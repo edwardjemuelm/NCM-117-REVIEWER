@@ -319,7 +319,7 @@ function switchTab(t){
   if(t==='identification')renderID();
 }
 function newQuiz(){
-  const pool=[...data].sort(()=>Math.random()-0.5).slice(0,20);
+  const pool=[...data].sort(()=>Math.random()-0.5);
   qzItems=pool;qzIdx=0;qzScore=0;qzAnswered=false;
   document.getElementById('qz-result').style.display='none';
   document.getElementById('qz-main').style.display='block';
